@@ -1,0 +1,87 @@
+<!doctype html>
+<html id="html">
+<head>
+<title>ASDF Sort Pixels Test</title>
+<style type="text/css">
+#params {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #fff;
+}
+html,body {
+  min-width: 100%;
+  min-height: 100%;
+  padding: 0; 
+  margin: 0;
+}
+body {
+  padding: 0; 
+  margin: 0;
+  padding-top: 40px;
+}
+</style>
+</head>
+<body>
+<div id="params">
+  <input type="file" id="upload">
+
+  iterations <input id="iterations" type="text" value="1" size="2">
+
+  mode 
+  <select id="mode">
+    <option selected value="0">black</option>
+    <option value="2">white</option>
+    <option value="1">brightness</option>
+  </select>
+</div>
+</body>
+
+<script type="text/javascript" src="vendor/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="vendor/upload.js"></script>
+<script type="text/javascript" src="sortpixels.js"></script>
+<script type="text/javascript">
+
+new Uploader("html", setImage);
+new Uploader("#upload", setImage);
+
+$("#mode").change(function(){
+  mode = parseInt( $("#mode").val() );
+  render();
+});
+
+$("#iterations").blur(function(){
+  var newIter = parseInt( $("#iterations").val() );
+  if (newIter && newIter !== iterations && newIter < 1000) {
+    iterations = newIter;
+    render();
+  } else {
+    $("#iterations").val(iterations);
+  }
+});
+
+var img, mode = 0, iterations = 1;
+
+function setImage(uri){
+  img = new Image();
+  img.onload = function(){
+    // params:
+    // - image object
+    // - mode (0 = black, 1 = brightness, 2 = white, default = 0)
+    // - iterations (default = 1)
+
+    render();
+  }
+  img.src = uri;
+}
+function render(){
+  if (img) {
+    var sortedCanvas = sortPixels(img, mode, iterations);
+    document.body.appendChild(sortedCanvas);
+    $("body").animate({'scrollTop': $(sortedCanvas).offset().top - 40 }, 300);
+  }
+}
+</script>
+
+</html>
+
