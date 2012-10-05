@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<title>ASDF Sort Pixels Test</title>
+</head>
+<body>
+<h1>Sort Pixels</h1>
+
+</body>
+
+<script type="text/javascript" src="sortpixels.js"></script>
+<script type="text/javascript">
+var imageUrl = "ISS019-E-014918_lrg.jpg";
+//var imageUrl = "test.png";
+
+var img = new Image();
+img.onload = function(){
+  // params:
+  // - image object
+  // - mode (0 = black, 1 = brightness, 2 = white, default = 0)
+  // - iterations (default = 1)
+
+  var sortedCanvas = sortPixels(img, 0, 1);
+  document.body.appendChild(sortedCanvas);
+}
+img.src = imageUrl;
+</script>
+
+
+</html>
