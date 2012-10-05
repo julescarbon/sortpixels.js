@@ -1,7 +1,10 @@
 This is a port of @kimasendorf's Sort Pixels script from Processing to Javascript.
 
-announcement: http://kimasendorf.tumblr.com/post/32936480093/processing-source-code
-original source: http://kimasendorf.com/data/ASDFPixelSort.zip
+announcement:
+     http://kimasendorf.tumblr.com/post/32936480093/processing-source-code
+
+original source:
+     http://kimasendorf.com/data/ASDFPixelSort.zip
 
 to run the test, start an HTTP server from this dir..
      python -m SimpleHTTPServer 8000
